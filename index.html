@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indonesia Terkini – Creative Edition</title>
+<style>
+:root{
+  --primary:#0b1220;
+  --secondary:#2563eb;
+  --accent:#22c55e;
+  --bg:#f6f8fc;
+  --card:#ffffff;
+  --muted:#6b7280;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Segoe UI',Roboto,Arial,sans-serif;
+  background:radial-gradient(1200px 400px at top,#eef2ff,transparent),var(--bg);
+  color:var(--primary)
+}
+
+/* ===== NAVBAR ===== */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #e5e7eb;
+}
+.navbar{
+  max-width:1200px;margin:auto;
+  display:flex;align-items:center;gap:18px;
+  padding:14px 20px
+}
+.logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800}
+.logo img{width:38px;height:38px;border-radius:12px}
+.menu{display:flex;gap:18px}
+.menu a{cursor:pointer;text-decoration:none;font-weight:600;color:var(--muted);position:relative;padding:6px 0}
+.menu a.active,.menu a:hover{color:var(--secondary)}
+.menu a.active::after{
+  content:'';position:absolute;left:0;bottom:-6px;width:100%;height:3px;
+  background:linear-gradient(90deg,var(--secondary),var(--accent));border-radius:6px
+}
+.search{
+  margin-left:auto;
+  padding:10px 14px;border-radius:999px;border:1px solid #e5e7eb;
+  min-width:220px
+}
+
+/* ===== HERO ===== */
+.hero{
+  max-width:1200px;margin:28px auto;
+  background:linear-gradient(135deg,#1e3a8a,#2563eb);
+  color:#fff;border-radius:26px;overflow:hidden;
+  display:grid;grid-template-columns:1.2fr 1fr;position:relative
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:url('https://www.transparenttextures.com/patterns/cubes.png');
+  opacity:.15
+}
+.hero img{width:100%;height:100%;object-fit:cover;opacity:.35}
+.hero-content{padding:40px;position:relative}
+.hero h1{margin:0 0 14px 0;font-size:36px}
+.hero p{opacity:.95;line-height:1.7}
+.hero-meta{display:flex;gap:14px;margin-top:10px;font-size:14px;opacity:.9}
+.cta{
+  margin-top:18px;
+  background:#fff;color:#1e3a8a;
+  border:none;border-radius:999px;
+  padding:12px 24px;font-weight:800;cursor:pointer
+}
+
+/* ===== TICKER ===== */
+.ticker{
+  max-width:1200px;margin:0 auto 10px auto;
+  background:#fff;border-radius:14px;
+  padding:10px 14px;overflow:hidden;
+  box-shadow:0 10px 24px rgba(15,23,42,.08)
+}
+.ticker span{white-space:nowrap;display:inline-block;animation:marquee 18s linear infinite}
+@keyframes marquee{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+
+/* ===== CONTROLS ===== */
+.controls{max-width:1200px;margin:10px auto;padding:0 20px;display:flex;gap:10px;justify-content:flex-end}
+select,button.filter{
+  padding:8px 12px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;cursor:pointer
+}
+button.filter.active{background:linear-gradient(135deg,var(--secondary),var(--accent));color:#fff;border:none}
+
+/* ===== GRID ===== */
+.grid{
+  max-width:1200px;margin:26px auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:26px;padding:0 20px
+}
+.card{
+  background:var(--card);
+  border-radius:22px;overflow:hidden;
+  box-shadow:0 14px 34px rgba(15,23,42,.1);
+  cursor:pointer;transition:.3s;position:relative
+}
+.card::before{
+  content:'';position:absolute;inset:auto 0 0 0;height:4px;
+  background:linear-gradient(90deg,var(--secondary),var(--accent))
+}
+.card:hover{transform:translateY(-8px)}
+.card img{width:100%;height:180px;object-fit:cover}
+.card .content{padding:18px}
+.badge{display:inline-block;background:#e0e7ff;color:#1e40af;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
+.card h4{margin:10px 0 6px 0;font-size:18px}
+.card p{font-size:14px;line-height:1.7;color:#334155}
+
+/* ===== MODAL ===== */
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.65);display:none;align-items:center;justify-content:center;z-index:200}
+.modal-content{
+  background:#fff;width:95%;max-width:900px;max-height:85%;overflow:auto;
+  border-radius:26px;padding:30px
+}
+.modal-content img{width:100%;border-radius:18px;margin-bottom:18px}
+.close{float:right;font-weight:900;cursor:pointer}
+
+/* ===== FOOTER ===== */
+footer{
+  margin-top:60px;background:#0b1220;color:#cbd5f5
+}
+.footer-inner{
+  max-width:1200px;margin:auto;padding:30px 20px;
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px
+}
+footer h4{margin-top:0;color:#fff}
+footer a{color:#cbd5f5;text-decoration:none;display:block;margin-bottom:6px}
+footer small{text-align:center;display:block;padding:12px;border-top:1px solid #1e293b}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero img{display:none}
+  .search{width:100%;margin-left:0}
+  .menu{flex-wrap:wrap}
+  .footer-inner{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="logo"><img src="https://via.placeholder.com/40">Indonesia Terkini</div>
+    <nav class="menu">
+      <a class="active" onclick="setCategory('all',this)">Home</a>
+      <a onclick="setCategory('nasional',this)">Nasional</a>
+      <a onclick="setCategory('ekonomi',this)">Ekonomi</a>
+      <a onclick="setCategory('teknologi',this)">Teknologi</a>
+      <a onclick="setCategory('olahraga',this)">Olahraga</a>
+    </nav>
+    <input class="search" placeholder="Cari berita..." oninput="searchNews(this.value)">
+  </div>
+</header>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c">
+  <div class="hero-content">
+    <h1 id="heroTitle"></h1>
+    <p id="heroDesc"></p>
+    <div class="hero-meta"><span>🔥 Trending</span><span>🇮🇩 Indonesia</span></div>
+    <button class="cta" onclick="openNews(0)">Baca Selengkapnya</button>
+  </div>
+</section>
+
+<div class="ticker">
+  <span id="tickerText"></span>
+</div>
+
+<div class="controls">
+  <button class="filter active" onclick="quickFilter('all',this)">Semua</button>
+  <button class="filter" onclick="quickFilter('nasional',this)">Nasional</button>
+  <button class="filter" onclick="quickFilter('ekonomi',this)">Ekonomi</button>
+  <button class="filter" onclick="quickFilter('teknologi',this)">Teknologi</button>
+  <button class="filter" onclick="quickFilter('olahraga',this)">Olahraga</button>
+  <select onchange="sortNews(this.value)">
+    <option value="new">Terbaru</option>
+    <option value="title">Judul A–Z</option>
+  </select>
+</div>
+
+<div class="grid" id="newsGrid"></div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeNews()">X</span>
+    <h2 id="modalTitle"></h2>
+    <img id="modalImage">
+    <p id="modalBody"></p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h4>Indonesia Terkini</h4>
+      <p>Portal berita nasional yang menyajikan informasi aktual, terpercaya, dan mudah dipahami oleh masyarakat Indonesia.</p>
+    </div>
+    <div>
+      <h4>Kategori</h4>
+      <a>Nasional</a><a>Ekonomi</a><a>Teknologi</a><a>Olahraga</a>
+    </div>
+    <div>
+      <h4>Informasi</h4>
+      <a>Tentang Kami</a><a>Kebijakan Privasi</a><a>Kontak</a>
+    </div>
+  </div>
+  <small>© 2025 Indonesia Terkini</small>
+</footer>
+
+<script>
+const news=[
+  {cat:'nasional',date:5,title:'Kebakaran Gedung Perkantoran di Jakarta Pusat',image:'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c',summary:'Kebakaran besar melanda gedung perkantoran di Jakarta Pusat dan menimbulkan kerugian besar.',body:'Kebakaran besar terjadi di gedung perkantoran kawasan Jakarta Pusat pada Senin pagi. Api muncul sekitar pukul 05.30 WIB dan cepat membesar. Lebih dari 15 unit pemadam dikerahkan dan api berhasil dipadamkan setelah tiga jam. Pemerintah Provinsi DKI Jakarta menyatakan akan melakukan investigasi menyeluruh untuk memastikan penyebab kebakaran serta meningkatkan standar keselamatan gedung.'},
+  {cat:'ekonomi',date:4,title:'Pemerintah Jatuhkan Denda Triliunan ke Perusahaan Sawit',image:'https://images.unsplash.com/photo-1501004318641-b39e6451bec6',summary:'Puluhan perusahaan sawit dikenai sanksi atas pelanggaran kawasan hutan lindung.',body:'Pemerintah Indonesia menjatuhkan denda triliunan rupiah kepada sejumlah perusahaan sawit yang terbukti melanggar aturan. Dana denda akan dialokasikan untuk pemulihan lingkungan dan reboisasi hutan. Langkah ini mendapat dukungan luas dari masyarakat dan aktivis lingkungan.'},
+  {cat:'teknologi',date:3,title:'Pemanfaatan Teknologi AI Semakin Meluas di Indonesia',image:'https://images.unsplash.com/photo-1581091012184-5c7a99a7b8ff',summary:'Artificial Intelligence mulai diterapkan di berbagai sektor strategis.',body:'Pemanfaatan teknologi kecerdasan buatan atau AI semakin meluas di Indonesia. Sektor pendidikan, kesehatan, dan pemerintahan mulai memanfaatkan AI untuk meningkatkan efisiensi layanan. Pemerintah menekankan pentingnya regulasi dan etika dalam penerapan teknologi ini.'},
+  {cat:'olahraga',date:2,title:'Indonesia Raih Prestasi Gemilang di SEA Games',image:'https://images.unsplash.com/photo-1517649763962-0c623066013b',summary:'Kontingen Indonesia berhasil meraih puluhan medali emas.',body:'Kontingen Indonesia mencatat prestasi gemilang dengan meraih puluhan medali emas dari berbagai cabang olahraga. Prestasi ini diharapkan mampu meningkatkan semangat atlet muda dan dukungan masyarakat terhadap olahraga nasional.'}
+];
+let current=[...news];
+
+function render(){
+  heroTitle.innerText=current[0].title;
+  heroDesc.innerText=current[0].summary;
+  tickerText.innerText=current.map(n=>`🔔 ${n.title}`).join('   ');
+  const g=document.getElementById('newsGrid');
+  g.innerHTML='';
+  current.forEach((n,i)=>{
+    g.innerHTML+=`<div class="card" onclick="openNews(${i})"><img src="${n.image}"><div class="content"><span class="badge">${n.cat.toUpperCase()}</span><h4>${n.title}</h4><p>${n.summary}</p></div></div>`
+  })
+}
+function setCategory(cat,el){document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));el.classList.add('active');current=(cat==='all')?[...news]:news.filter(n=>n.cat===cat);render()}
+function quickFilter(cat,btn){document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');current=(cat==='all')?[...news]:news.filter(n=>n.cat===cat);render()}
+function searchNews(q){current=news.filter(n=>n.title.toLowerCase().includes(q.toLowerCase()));render()}
+function sortNews(t){t==='title'?current.sort((a,b)=>a.title.localeCompare(b.title)):current.sort((a,b)=>b.date-a.date);render()}
+function openNews(i){modal.style.display='flex';modalTitle.innerText=current[i].title;modalImage.src=current[i].image;modalBody.innerText=current[i].body}
+function closeNews(){modal.style.display='none'}
+render();
+</script>
+</body>
+</html>
